@@ -1,14 +1,16 @@
 /*
  * @Author: zenghao
  * @Date: 2020-07-26 16:04:20
- * @LastEditTime: 2020-08-31 16:00:50
+ * @LastEditTime: 2020-09-03 20:13:39
  * @LastEditors: zenghao
  * @Description: 
- * @FilePath: /easy-table/src/components/EditModal/index.js
+ * @FilePath: /ReactFastTable/src/EditModal/index.js
  * @Copyright 2020 OBKoro1
  */
 import React, { useEffect } from 'react'
-import { Modal, Form, Button, Tooltip, Typography } from 'antd'
+import { Modal, Form, Button, Tooltip } from 'antd'
+
+import { dateFormat } from '../kits'
 
 const EditModal = (props) => {
   const { allInput, editData, handleEditSubmit, editModalType } = props
@@ -32,9 +34,10 @@ const EditModal = (props) => {
       })
     }else {
       for(let key in editData) {
-        initValuesTemp[key] = editData[key]
+        initValuesTemp[key] = dateFormat(editData[key])
       }
     }
+    console.log(initValuesTemp, '看这里')
     form.setFieldsValue(initValuesTemp)
   }
 
