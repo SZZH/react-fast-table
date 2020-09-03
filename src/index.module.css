@@ -1,0 +1,15 @@
+.box {
+  color: red
+}
+
+.form-container {
+  margin: 20px 0 -10px 0;
+}
+
+.options-btn {
+  margin: 0 5px 5px 0 !important;
+}
+
+:global(.ant-table-body .ant-table-row td) {
+  padding: 5px !important;
+}
