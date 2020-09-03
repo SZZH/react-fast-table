@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "main": "lib/index.js",
   "license": "MIT",
+  "proxy": "http://localhost:3030",
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.config.js",
     "build": "webpack --config config/webpack.prod.config.js",
@@ -18,6 +19,7 @@
     "@babel/core": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "react-fast-table": "^1.0.4",
     "antd": "^4.6.2",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.2",
