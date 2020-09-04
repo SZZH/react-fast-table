@@ -270,6 +270,15 @@ getDataList 数据实例
     ```
     - 返回参数
     ```json
-    {"status":"success"}
+    {"status": "success"}
     ```
-  - updateItem
+  - updateItem，与 insertItem 基本一致
+  - removeItem
+    - 请求参数
+    ```json
+    {"input": 0}
+    ```
+    - 返回参数
+    ```json
+    {status: "success"}
+    ```
