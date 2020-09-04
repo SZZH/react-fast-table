@@ -33,7 +33,7 @@ const fetchPro = async (uri, options) => {
     responseCallback(responseData)
   })
 
-  return fetch(uri, newOptions)
+  return result
 }
 
 export default fetchPro
