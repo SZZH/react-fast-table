@@ -1,6 +1,6 @@
 {
   "name": "react-fast-table",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "lib/index.js",
   "license": "MIT",
   "proxy": "http://localhost:3030",
