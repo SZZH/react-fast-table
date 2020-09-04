@@ -1,10 +1,10 @@
 /*
  * @Author: zenghao
  * @Date: 2020-07-28 13:57:04
- * @LastEditTime: 2020-09-02 18:13:22
+ * @LastEditTime: 2020-09-04 21:24:00
  * @LastEditors: zenghao
  * @Description: 
- * @FilePath: /publishCli/src/index.js
+ * @FilePath: /ReactFastTable/src/index.js
  * @Copyright 2020 OBKoro1
  */
 
@@ -25,17 +25,18 @@ import './index.css'
 const { RangePicker } = DatePicker
 
 const formatMomentObj = obj => {
+  const formatTemple = 'YYYY-MM-DD'
   let tempObj
   if(typeof obj !== 'object') return obj
   if(Array.isArray(obj)) {
     tempObj = [...obj]
     for(let i in tempObj) {
       if(typeof tempObj[i] === 'object' && !tempObj[i].hasOwnProperty('_isAMomentObject')) return obj
-      tempObj[i] = tempObj[i].format('YYYY-MM-DD hh:mm:ss')
+      tempObj[i] = tempObj[i].format(formatTemple)
     }
   }else {
     if(!obj.hasOwnProperty('_isAMomentObject')) return obj
-    tempObj = obj.format('YYYY-MM-DD hh:mm:ss')
+    tempObj = obj.format(formatTemple)
   }
 
   return tempObj

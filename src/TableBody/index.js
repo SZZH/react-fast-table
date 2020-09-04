@@ -1,10 +1,10 @@
 /*
  * @Author: zenghao
  * @Date: 2020-07-23 22:55:58
- * @LastEditTime: 2020-09-01 16:52:11
+ * @LastEditTime: 2020-09-04 21:28:38
  * @LastEditors: zenghao
  * @Description: 
- * @FilePath: /easy-table/src/components/TableBody/index.js
+ * @FilePath: /ReactFastTable/src/TableBody/index.js
  * @Copyright 2020 OBKoro1
  */
 
@@ -128,7 +128,7 @@ const TableBody = (props) => {
         render: data => {
           return (
             <Tooltip placement="topLeft" title={hasEnums && header[key].inputOptions.enums[data] || data}>
-              {hasEnums && header[key].inputOptions.enums[data] || data}
+              {hasEnums && header[key].inputOptions.enums[data] || Array.isArray(data) && data.join('~') || data}
             </Tooltip>
           )
         }

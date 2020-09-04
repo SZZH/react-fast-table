@@ -1,7 +1,7 @@
 /*
  * @Author: zenghao
  * @Date: 2020-07-26 16:04:20
- * @LastEditTime: 2020-09-03 20:13:39
+ * @LastEditTime: 2020-09-04 21:14:27
  * @LastEditors: zenghao
  * @Description: 
  * @FilePath: /ReactFastTable/src/EditModal/index.js
@@ -37,7 +37,6 @@ const EditModal = (props) => {
         initValuesTemp[key] = dateFormat(editData[key])
       }
     }
-    console.log(initValuesTemp, '看这里')
     form.setFieldsValue(initValuesTemp)
   }
 
