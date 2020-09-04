@@ -1,6 +1,6 @@
 {
   "name": "react-fast-table",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "lib/index.js",
   "license": "MIT",
   "proxy": "http://localhost:3030",
@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --config config/webpack.dev.config.js",
     "release": "standard-version",
     "build": "webpack --config config/webpack.prod.config.js",
-    "pub": "npm run build && npm publish"
+    "publish": "yarn build && npm publish"
   },
   "dependencies": {
     "antd": "^4.6.2",
