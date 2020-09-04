@@ -46,7 +46,6 @@ requestInterceptor(config => {
 
 // 响应拦截器
 responseInterceptor(response => {
-  console.log(response, 'response22')
   checkStatus(response)
 })
 
@@ -65,13 +64,28 @@ export const request = async (uri, body = JSON.stringify({}), callback = null) =
     }
   }
 
-  let response = {}
+  // let response = {}
   // 发送请求
-  await fetchPro(uri, {
+  // await fetchPro(uri, {
+  //   ...options,
+  //   headers
+  // }).then(data => {
+  //   console.log(data, 'data')
+  //   response = data
+  // })
+  // const result = fetchPro(uri, {
+  //   ...options,
+  //   headers
+  // })
+  // console.log(result, 'result')
+  // console.log(result, 'result1')
+  
+  // result.then(data => {
+  //   console.log(data, 'result2')
+  // })
+  // console.log((await result), 'result2')
+  return fetchPro(uri, {
     ...options,
     headers
-  }).then(data => {
-    response = data
   })
-  return response.json()
 }

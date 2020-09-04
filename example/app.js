@@ -1,15 +1,15 @@
 /*** examples/src/app.js ***/
 import React from 'react'
 import { render } from 'react-dom'
-import FastTable from 'react-fast-table'
+import FastTable from '../src'
 import 'antd/dist/antd.css'
 
 const App = () => (
   <FastTable
-    getDataList='/getList'
-    insertItem='/insertItem'
-    removeItem='/removeItem'
-    updateItem='/updateItem'
+    getDataList='/api/getList'
+    insertItem='/api/insertItem'
+    removeItem='/api/removeItem'
+    updateItem='/api/updateItem'
     headers={{
       'Accept': 'application/json',
       'Content-Type': 'application/json',

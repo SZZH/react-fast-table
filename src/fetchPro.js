@@ -22,18 +22,20 @@ const fetchPro = async (uri, options) => {
   // 发送请求
   let result = fetch(uri, newOptions)
 
-  let responseData = {}
-  // 请求数据
-  await result.then((response) => {
-    response.data = response.json()
-    responseData = response
-  })
-  // 遍历响应拦截器队列
-  responseCallbackQueue.forEach(responseCallback => {
-    responseCallback(responseData)
+  let resultData = {}
+  await result.then(async response => {
+    await response.json().then(data => {
+      response.data = data
+      resultData = data
+
+      // 遍历响应拦截器队列
+      responseCallbackQueue.forEach(responseCallback => {
+        responseCallback(response)
+      })
+    })
   })
 
-  return result
+  return resultData
 }
 
 export default fetchPro
