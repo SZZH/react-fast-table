@@ -1,7 +1,7 @@
 /*
  * @Author: zenghao
  * @Date: 2020-07-28 13:57:04
- * @LastEditTime: 2020-09-04 21:24:00
+ * @LastEditTime: 2020-09-25 20:02:38
  * @LastEditors: zenghao
  * @Description: 
  * @FilePath: /ReactFastTable/src/index.js
@@ -107,7 +107,7 @@ const initPage = props => {
   setHeaders(props.headers)
 }
 
-const formData = {}
+let formData = {}
 
 const FastTable = props => {
   initPage(props)
@@ -124,9 +124,7 @@ const FastTable = props => {
 
   // 保存 searchFormValue
   const setFormData = newFormData => {
-    for(let key in newFormData) {
-      formData[key] = newFormData[key]
-    }
+    formData = newFormData
   }
 
   // 更新 data
