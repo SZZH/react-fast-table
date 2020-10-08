@@ -45,7 +45,7 @@ const devConfig = {
     open: true, // 自动打开浏览器
     proxy: {
       '/api/': {
-        target: 'http://localhost:3030',
+        target: 'http://localhost:3232',
         changeOrigin: true
       }
     }

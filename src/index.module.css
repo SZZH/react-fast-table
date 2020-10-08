@@ -13,3 +13,7 @@
 :global(.ant-table-body .ant-table-row td) {
   padding: 5px !important;
 }
+
+:global(.ant-table-row-level-1) {
+  background: rgb(240, 240, 240);
+}

@@ -11,7 +11,8 @@ const SearchForm = ({ allInput, inputEnums, updateData }) => {
     updateData({
       current: 1,
       pageSize: 20,
-      input: {}
+      input: {},
+      sorter: {}
     })
   }
 
@@ -25,7 +26,8 @@ const SearchForm = ({ allInput, inputEnums, updateData }) => {
     updateData({
       current: 1,
       pageSize: 20,
-      input
+      input,
+      sorter: {}
     })
   }
 

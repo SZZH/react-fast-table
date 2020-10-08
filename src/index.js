@@ -1,7 +1,7 @@
 /*
  * @Author: zenghao
  * @Date: 2020-07-28 13:57:04
- * @LastEditTime: 2020-09-25 20:02:38
+ * @LastEditTime: 2020-10-08 14:47:44
  * @LastEditors: zenghao
  * @Description: 
  * @FilePath: /ReactFastTable/src/index.js
@@ -128,8 +128,9 @@ const FastTable = props => {
   }
 
   // 更新 data
-  const updateData = async (body = { current: 1, pageSize: 20, input: {} }) => {
+  const updateData = async (body = { current: 1, pageSize: 20, input: {}, sorter: {} }) => {
     setFormData(body.input)
+    console.log(body, '11')
     setLoading(true)
     const { list, pagination, header } = await getDataList({...body, input: formData})
     setData({
@@ -188,6 +189,8 @@ const FastTable = props => {
   useEffect(() => {
     updateData()
   }, [])
+
+  console.log(data.list, 'list')
 
   return (
     <ConfigProvider locale={locale}>

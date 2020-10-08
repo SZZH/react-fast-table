@@ -1,7 +1,7 @@
 /*
  * @Author: zenghao
  * @Date: 2020-07-23 22:55:58
- * @LastEditTime: 2020-09-04 21:28:38
+ * @LastEditTime: 2020-10-08 15:47:40
  * @LastEditors: zenghao
  * @Description: 
  * @FilePath: /ReactFastTable/src/TableBody/index.js
@@ -24,6 +24,7 @@ const TableBody = (props) => {
     handleShowEditModal
   } = props
 
+  // 分页状态
   const [pagination, setPagination] = useState({
     ...paginationProps,
     current: 1,
@@ -34,17 +35,9 @@ const TableBody = (props) => {
     onChange: (current, pageSize) => {
       pagination.current = current
       setPagination(pagination)
-      updateData({ current, pageSize })
     },
     showTotal: (total) => <span>数据总数为：{total}条</span>
   })
-
-  useEffect(() => {
-    setPagination({
-      ...pagination,
-      ...paginationProps,
-    })
-  }, [paginationProps])
 
   // 获取表头键列表
   const keys = Object.keys(tableHeader)
@@ -55,8 +48,10 @@ const TableBody = (props) => {
   dataList = dataList.map(item => {
     let obj = {}
     for (let key of keys) {
-      obj[key] = item[key] && (item[key].enums && item[key].enums[item[key].value] || item[key].value)
+      obj[key] = (item[key] && (item[key].enums && item[key].enums[item[key].value] || item[key].value))
     }
+    obj.key = item.key
+    obj.children = item.children
     return obj
   })
 
@@ -111,6 +106,7 @@ const TableBody = (props) => {
         header[key].inputOptions.hasOwnProperty('enums') &&
         Object.keys(header[key].inputOptions.enums).length > 0
 
+        console.log(header[key].sorter, '11')
       return {
         title: () => {
           return (
@@ -119,6 +115,7 @@ const TableBody = (props) => {
             </Tooltip>
           )
         },
+        sorter: header[key].sorter,
         dataIndex: key,
         ellipsis: {
           showTitle: false,
@@ -143,6 +140,13 @@ const TableBody = (props) => {
     return columns
   }
 
+  useEffect(() => {
+    setPagination({
+      ...pagination,
+      ...paginationProps,
+    })
+  }, [paginationProps])
+
   return (
     <Table
       {...props}
@@ -150,6 +154,16 @@ const TableBody = (props) => {
       columns={getColumns(header)}
       dataSource={dataList}
       scroll={{ x: 1500, y: 300 }}
+      onChange={({current, pageSize}, filters, {field, order}) => {
+        updateData({
+          current,
+          pageSize,
+          sorter: {
+            field,
+            order
+          }
+        })
+      }}
     />
   )
 }
