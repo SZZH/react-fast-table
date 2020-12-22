@@ -24,6 +24,8 @@ import { changeDataType } from './kits'
 import './index.css'
 const { RangePicker } = DatePicker
 
+const id = `fast-table-${Date.now}`
+
 const formatMomentObj = obj => {
   const formatTemple = 'YYYY-MM-DD'
   let tempObj
@@ -130,7 +132,6 @@ const FastTable = props => {
   // 更新 data
   const updateData = async (body = { current: 1, pageSize: 20, input: {}, sorter: {} }) => {
     setFormData(body.input)
-    console.log(body, '11')
     setLoading(true)
     const { list, pagination, header } = await getDataList({...body, input: formData})
     setData({
@@ -190,12 +191,11 @@ const FastTable = props => {
     updateData()
   }, [])
 
-  console.log(data.list, 'list')
-
   return (
     <ConfigProvider locale={locale}>
       <Spin spinning={loading}>
         <div
+          id={id}
           style={{
             overflow: 'auto',
             margin: '5px 0',
@@ -222,6 +222,7 @@ const FastTable = props => {
             removeItem={handleRemoveItem}
             updateData={updateData}
             handleShowEditModal={handleShowEditModal}
+            containerId={id}
             style={{
               margin: '5px 0'
             }}

@@ -72,7 +72,7 @@ const EditModal = (props) => {
         form={form}
         onFinish={handleFormOnFinish}
         validateMessages={{
-          required: '${label}是必填项'
+          required: '该项是必填项'
         }}
       >
         {

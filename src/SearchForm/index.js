@@ -73,6 +73,9 @@ const SearchForm = ({ allInput, inputEnums, updateData }) => {
                 type='primary'
                 onClick={handleSubmitOnClick}
                 icon={<SearchOutlined />}
+                style={{
+                  marginLeft: 40
+                }}
               >
                 搜索
               </Button>

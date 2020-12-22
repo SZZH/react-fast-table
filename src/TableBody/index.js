@@ -91,6 +91,21 @@ const TableBody = (props) => {
     return obj
   })
 
+  const handleEdit = (type, data) => {
+    const container = document.getElementById(props.containerId)
+    const rows = container.getElementsByClassName('ant-table-row')
+
+    ;[].forEach.call(rows, item => {
+      item.style.background = 'transparent'
+
+      if(item.dataset.rowKey == data.id) {
+        item.style.background = 'rgb(250, 250, 250)'
+      }
+    })
+    
+    handleShowEditModal(type, data)
+  }
+
   // 操作列配置
   const options = {
     title: '操作',
@@ -101,7 +116,7 @@ const TableBody = (props) => {
           <Button
             type="primary"
             className={styles['options-btn']}
-            onClick={() => handleShowEditModal('edit', record)}
+            onClick={() => handleEdit('edit', record)}
           >
             编辑
           </Button>
@@ -132,11 +147,9 @@ const TableBody = (props) => {
 
   const handleResize = i => (e, { size }) => {
     const index = i - 1
+
     const nextColumns = [...columnsData]
-    nextColumns[index] = {
-      ...nextColumns[index],
-      width: size.width,
-    }
+    nextColumns[index].width = size.width
     setColumns(nextColumns)
     columnsData = nextColumns
   }
@@ -212,8 +225,9 @@ const TableBody = (props) => {
       // columns={getColumns(header)}
       columns={columnsData}
       dataSource={dataList}
-      scroll={{ x: 1500, y: 300 }}
+      scroll={{ x: 1500, y: 400 }}
       components={components}
+      
       onChange={({current, pageSize}, filters, {field, order}) => {
         updateData({
           current,
