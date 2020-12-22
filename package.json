@@ -13,7 +13,8 @@
     "antd": "^4.6.2",
     "moment": "^2.27.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-resizable": "^1.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.5",

@@ -1,7 +1,7 @@
 /*
  * @Author: zenghao
  * @Date: 2020-07-23 22:55:58
- * @LastEditTime: 2020-10-08 15:47:40
+ * @LastEditTime: 2020-11-02 15:01:19
  * @LastEditors: zenghao
  * @Description: 
  * @FilePath: /ReactFastTable/src/TableBody/index.js
@@ -11,8 +11,38 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button, Popconfirm, Tooltip } from 'antd'
 import { ExclamationCircleFilled } from '@ant-design/icons'
+import { Resizable } from 'react-resizable'
 
 import styles from '../index.module.css'
+
+const ResizableTitle = props => {
+  const { onResize, width, ...restProps } = props;
+
+  if (!width) {
+    return <th {...restProps} />;
+  }
+
+  return (
+    <Resizable
+      width={width}
+      height={0}
+      handle={
+        <span
+          className="react-resizable-handle"
+          onClick={e => {
+            e.stopPropagation();
+          }}
+        />
+      }
+      onResize={onResize}
+      draggableOpts={{ enableUserSelectHack: false }}
+    >
+      <th {...restProps} />
+    </Resizable>
+  );
+};
+
+let columnsData = []
 
 const TableBody = (props) => {
   const {
@@ -23,6 +53,12 @@ const TableBody = (props) => {
     updateData,
     handleShowEditModal
   } = props
+  const [columns, setColumns] = useState([])
+  const components = {
+    header: {
+      cell: ResizableTitle,
+    },
+  }
 
   // 分页状态
   const [pagination, setPagination] = useState({
@@ -94,6 +130,17 @@ const TableBody = (props) => {
     width: 50
   }
 
+  const handleResize = i => (e, { size }) => {
+    const index = i - 1
+    const nextColumns = [...columnsData]
+    nextColumns[index] = {
+      ...nextColumns[index],
+      width: size.width,
+    }
+    setColumns(nextColumns)
+    columnsData = nextColumns
+  }
+
   // 生成 column 配置
   const getColumns = (header) => {
     if (!header) return
@@ -106,7 +153,6 @@ const TableBody = (props) => {
         header[key].inputOptions.hasOwnProperty('enums') &&
         Object.keys(header[key].inputOptions.enums).length > 0
 
-        console.log(header[key].sorter, '11')
       return {
         title: () => {
           return (
@@ -120,12 +166,21 @@ const TableBody = (props) => {
         ellipsis: {
           showTitle: false,
         },
+        onHeaderCell: column => ({
+          width: column.width,
+          onResize: handleResize(index),
+        }),
         width: header[key].title.length <= 4 && 50 || 80,
         align: 'center',
         render: data => {
           return (
             <Tooltip placement="topLeft" title={hasEnums && header[key].inputOptions.enums[data] || data}>
-              {hasEnums && header[key].inputOptions.enums[data] || Array.isArray(data) && data.join('~') || data}
+              {
+                hasEnums &&
+                  header[key].inputOptions.enums[data] ||
+                  Array.isArray(data) && data.join('~') ||
+                  data
+              }
             </Tooltip>
           )
         }
@@ -145,15 +200,20 @@ const TableBody = (props) => {
       ...pagination,
       ...paginationProps,
     })
+    setColumns(getColumns(header))
+    columnsData = getColumns(header)
   }, [paginationProps])
 
   return (
     <Table
       {...props}
+      bordered
       pagination={pagination}
-      columns={getColumns(header)}
+      // columns={getColumns(header)}
+      columns={columnsData}
       dataSource={dataList}
       scroll={{ x: 1500, y: 300 }}
+      components={components}
       onChange={({current, pageSize}, filters, {field, order}) => {
         updateData({
           current,

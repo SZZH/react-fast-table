@@ -33,7 +33,25 @@ export default App
 ```
 - 接口数据格式
   - getDataList
-    - list: 表格数据
+
+    - 请求格式
+
+      - ```javascript
+        {
+          input:{},
+          current: 1,
+          pageSize: 20,
+          sorter: {
+            file: 'age', // 字段名
+            order: 'ascend' | 'descend' // 排序方式
+          }
+        }
+        ```
+
+    - 响应格式
+
+      - list: 表格数据 
+
     ```json
     [
         {
@@ -67,7 +85,8 @@ export default App
         }
     ]
     ```
-    - pagination: 分页，具体配置可参照 antd 的 pagination
+        - pagination: 分页，具体配置可参照 antd 的 pagination
+
     ```json
     "pagination": {
         "pageSize": 20,
@@ -78,6 +97,7 @@ export default App
     ```
     - header: table 表头和表单元素的配置，字段名要与 list 的字段名对应，设置为 false 时不显示
       - title： 显示在表头的文字
+      - sorter: 是否排序(true | false)，
       - inputOptions：需要展示的表单，用于查询，新增，修改
         - type：表单元素类型
           - Input：普通输入框
@@ -151,7 +171,7 @@ export default App
         }
     }
     ```
-getDataList 数据实例
+    getDataList 数据实例
 ```javascript
 {
     "list": [
