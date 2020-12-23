@@ -1,0 +1,20 @@
+.form-container {
+  margin: 20px 0 -10px 0;
+}
+
+.search-items {
+  position: relative;
+  overflow: hidden;
+}
+
+.flag {
+  text-align: center;
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  right: -30px;
+  z-index: 200;
+  cursor: pointer;
+}

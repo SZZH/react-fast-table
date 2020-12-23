@@ -1,5 +1,14 @@
 @import '~antd/dist/antd.css';
 
+.fast-table-container {
+  box-sizing: border-box;
+  padding: 10px;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+}
+
 .react-resizable {
   position: relative;
 }
